@@ -21,7 +21,7 @@ body {
   margin-bottom: 64px;
 }
 
-.hatch-modal-button {
+.hatch-button {
   cursor: pointer;
   background-color: #F8C56E;
   border-radius: 10px;
@@ -35,8 +35,12 @@ body {
   text-align: center;
   transition: 200ms;
   margin: 0 auto;
-
   margin-bottom: 48px;
+}
+
+form:has(.hatch-button) {
+  display: flex;
+  width: 100%;
 }
 
 .hatch-modal-button:hover {
@@ -44,7 +48,7 @@ body {
 }
 
 @media (max-width: 520px) {
-  .hatch-modal-button {
+  .hatch-button {
     max-width: 100%;
     width: 100%;
     padding: 20px 0px;

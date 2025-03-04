@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-
+            Emoji Box
         </title>
 
         <link rel="preconnect" href="https://fonts.bunny.net" />
@@ -26,8 +26,20 @@
             Just a personal emoji box.
         </h2>
 
-        <button class="hatch-modal-button">
-            Hatch an Emoji Egg!
-        </button>
+        <form action="{{ route('emoji.create') }}" method="post">
+            {{-- Implicitamente adiciona um campo CSRF oculto, por questão
+            de segurança e para conseguir fazer o disparo --}}
+            {{ csrfField() }}
+
+            <button class="hatch-button">
+                Hatch an Emoji Egg!
+            </button>
+        </form>
+
+        @each(emoji in emojis)
+            <li>
+                {{ emoji.emoji }} {{ emoji.name }}
+            </li>
+        @end
     </body>
 </html>
