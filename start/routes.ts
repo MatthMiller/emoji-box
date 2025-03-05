@@ -16,3 +16,5 @@ import router from '@adonisjs/core/services/router'
 
 router.get('/', [EmojisController, 'index']).as('emoji.index')
 router.post('/emoji', [EmojisController, 'create']).as('emoji.create')
+// O <form> não aceita o método delete
+router.post('/emoji/delete/:id', [EmojisController, 'delete']).as('emoji.delete')

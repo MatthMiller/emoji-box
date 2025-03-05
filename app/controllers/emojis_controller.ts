@@ -7,16 +7,14 @@ export default class EmojisController {
   async index(ctx: HttpContext) {
     const emojis = await Emoji.all()
 
-    console.log('teste')
-    console.log(emojis)
+    // console.log(emojis)
 
-    ctx.view.share({ emojis })
+    ctx.view.share({ emojis, emojisLength: emojis?.length | 0 })
     return ctx.view.render('pages/home')
   }
 
   async create(ctx: HttpContext) {
     const randomEmoji = GetRandomEmojiService.getOne()
-    console.log(randomEmoji)
 
     // Cria um Emoji com base na tabela NamesList
     // Que é baseada em seeding (ainda a fazer)
@@ -30,6 +28,19 @@ export default class EmojisController {
         code: 'E_INTERNAL_ERROR',
         status: 500,
       })
+    }
+
+    ctx.response.redirect().toRoute('emoji.index')
+  }
+
+  async delete(ctx: HttpContext) {
+    const requestedId = ctx.request.params().id
+
+    try {
+      const emojiRow = await Emoji.findByOrFail({ id: requestedId })
+      await emojiRow.delete()
+    } catch (error) {
+      console.log(error)
     }
 
     ctx.response.redirect().toRoute('emoji.index')

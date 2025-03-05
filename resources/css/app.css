@@ -47,11 +47,79 @@ form:has(.hatch-button) {
   background-color: #EFAD3B;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
   .hatch-button {
     max-width: 100%;
     width: 100%;
     padding: 20px 0px;
     font-size: 1.3125rem;
+  }
+}
+
+.emoji-list-container {
+  display: flex;
+  place-self: center;
+  width: 100%;
+  max-width: 800px;
+  flex-direction: column;
+  margin-bottom: 32px;
+  gap: 16px;
+
+  .quantity {
+    color: #D4BE98;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .single-emoji-item {
+    background-color: #202020;
+    border-radius: 15px;
+    padding: 24px 30px;
+    border: 1px solid #D4BE98;
+
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+
+    .left-side, .right-side {
+      display: flex;
+      align-items: center;
+      place-content: center;
+      gap: 16px;
+    }
+
+    .left-side > div {
+      font-size: 2rem;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      place-content: center;
+    }
+
+    .left-side > p {
+      font-size: 1.3125rem;
+      font-weight: 600;
+    }
+
+    .right-side > form > button {
+      font-size: 1.3125rem;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      padding: 8px;
+      border: 1px solid #D4BE98;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      place-content: center;
+
+      transition: 200ms;
+      cursor: pointer;
+    }
+
+    .right-side > form > button:hover {
+      background-color: #D4BE98;
+    } 
   }
 }

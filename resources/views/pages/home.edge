@@ -31,15 +31,43 @@
             de segurança e para conseguir fazer o disparo --}}
             {{ csrfField() }}
 
-            <button class="hatch-button">
+					<button class="hatch-button">
                 Hatch an Emoji Egg!
-            </button>
+					</button>
         </form>
 
-        @each(emoji in emojis)
-            <li>
-                {{ emoji.emoji }} {{ emoji.name }}
-            </li>
-        @end
+        {{-- usar o @if e @else para ver se tem emojis --}}
+        {{-- Se não tiver, mostrar mensagem que não tem --}}
+        <div class="emoji-list-container">
+            <p class="quantity">
+                Quantity of Emojis: {{ emojisLength }}
+            </p>
+            @each(emoji in emojis)
+                <li class="single-emoji-item">
+                    <div class="left-side">
+                        <div class="emoji">
+                            {{ emoji.emoji }}
+                        </div>
+                        <p>
+                            {{ emoji.name }}
+                        </p>
+                    </div>
+
+                    <div class="right-side">
+                        <form>
+                            <button>
+                                📝
+                            </button>
+                        </form>
+                        <form action="{{ route('emoji.delete', [emoji.id],  { formAction: 'delete' }) }}" method="post">
+                            {{ csrfField() }}
+                            <button>
+                                ❌
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            @end
+        </div>
     </body>
 </html>
